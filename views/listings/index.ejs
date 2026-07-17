@@ -1,0 +1,128 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<div class="filters-wrapper">
+
+  <button class="scroll-btn scroll-left" id="scrollLeft">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+
+  <div id="filters">
+       <div class="filter">
+          <div><i class="fa-solid fa-fire"></i></div>
+          <p>Trending</p>
+       </div>
+       <div class="filter">
+          <div><i class="fa-solid fa-bed"></i></div>
+          <p>Rooms</p>
+       </div>
+       <div class="filter">
+          <div><i class="fa-sharp fa-solid fa-city"></i></div>
+          <p>Iconic cities</p>
+       </div>
+       <div class="filter">
+          <div><i class="fa-solid fa-mountain-city"></i></div>
+          <p>Mountains Cities</p>
+       </div>
+       <div class="filter">
+          <div><i class="fa-solid fa-chess-rook"></i></div>
+          <p>Castles</p>
+       </div>
+       <div class="filter">
+          <div><i class="fa-solid fa-umbrella-beach"></i></div>
+          <p>Beach</p>
+       </div>
+       <div class="filter">
+          <div><i class="fa-solid fa-person-swimming"></i></div>
+          <p>Amazing pools</p>
+       </div>
+       <div class="filter">
+          <div><i class="fa-solid fa-leaf"></i></div>
+          <p>countryside</p>
+       </div>
+       <div class="filter">
+          <div><i class="fa-solid fa-sailboat"></i></div>
+          <p>lakefront</p>
+       </div>
+       <div class="filter">
+          <div><i class="fa-solid fa-wheat-awn"></i></div>
+          <p>farms</p>
+       </div>
+    </div>
+
+      <button class="scroll-btn scroll-right" id="scrollRight">
+         <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    <div class="tax-toggle">
+       <div class="form-check-reverse form-switch">
+       <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+       <label class="form-check-label" for="flexSwitchCheckDefault">Display total after Taxes</label>
+       </div>
+    </div>
+  </div>
+
+  <div class="row row-cols-lg-5 row-cols-md-5 mt-3 row-cols-sm-1">
+    <% for(let listing of allListings){%>
+    <a href="/listings/<%= listing._id %>" class="listing-link">
+      <div class="card col listing-card">
+        <img
+          src="<%= listing.image.url %> "
+          class="card-img-top"
+          alt="Listing_image"
+          style="height: 10rem"
+        />
+        <div class="card-img-overlay"></div>
+        <div class="card-body">
+          <p class="card-text">
+            <b> <%= listing.title %> </b>
+            <!-- <br />
+             <%=listing.description %>
+            <br /> -->
+            <br />
+            &#8377; <%=listing.price.toLocaleString("en-IN") %> for 2 night
+            <i class="tax-info">&nbsp; &nbsp;+18% GST</i>
+            <!-- <br />
+            <%=listing.location %>
+            <br />
+            <%=listing.country %>
+            <br /> -->
+          </p>
+        </div>
+      </div>
+    </a>
+    <% } %>
+  </div>
+
+<script>
+  let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+  taxSwitch.addEventListener("click",()=>{
+    let taxInfo = document.getElementsByClassName("tax-info");
+    for(info of taxInfo){
+      if(info.style.display != "inline"){
+          info.style.display = "inline";
+      }else{
+        info.style.display = "none";
+      }
+    }
+  })
+
+  // Scroll arrows for filter bar
+  const filters = document.getElementById("filters");
+  const scrollLeftBtn = document.getElementById("scrollLeft");
+  const scrollRightBtn = document.getElementById("scrollRight");
+
+  scrollLeftBtn.addEventListener("click", () => {
+    filters.scrollBy({ left: -200, behavior: "smooth" });
+  });
+
+  scrollRightBtn.addEventListener("click", () => {
+    filters.scrollBy({ left: 200, behavior: "smooth" });
+  });
+
+  // Active filter toggle
+  document.querySelectorAll(".filter").forEach((filter) => {
+    filter.addEventListener("click", () => {
+      document.querySelectorAll(".filter").forEach((f) => f.classList.remove("active"));
+      filter.classList.add("active");
+    });
+  });
+</script>
+

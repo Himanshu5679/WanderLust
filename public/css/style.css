@@ -17,6 +17,9 @@ min-height: 100vh;
 .navbar{
     height: 5rem;
     background-color:white;
+    position: sticky;      /* ← ye line add karo */
+    top: 0;                 /* ← ye line add karo */
+    z-index: 1050;          /* ← ye line add karo */
 }
 .fa-compass{
     color:#fe424d ;
@@ -656,6 +659,88 @@ font-size:24px;
 
 h3{
 font-size:20px;
+}
+/* ===========================
+PROFILE DROPDOWN - RESPONSIVE FIX
+=========================== */
+
+/* Navbar hamesha upar fixed rahe, content ke peeche na jaye */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+}
+
+/* Avatar + menu button ek row mein rahen, gap ke saath */
+.navbar .d-flex.align-items-center,
+.navbar-nav.align-items-center {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Dropdown menu - desktop default: right-aligned, button ke neeche */
+.dropdown-menu {
+  right: 0;
+  left: auto;
+  z-index: 1060;
+  border-radius: 14px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+  border: none;
+  padding: 0.5rem 0;
+  min-width: 220px;
+}
+
+.dropdown-menu .dropdown-item {
+  padding: 0.7rem 1.2rem;
+  font-size: 0.9rem;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background: #f7f7f7;
+}
+
+/* Listing card/image ka z-index dropdown se kam rahe taaki wo hamesha upar dikhe */
+.listing-card,
+.card-img-top,
+.show-img,
+#map {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== TABLET & MOBILE ===== */
+@media (max-width: 768px) {
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 15px;
+  }
+
+  .menu-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Dropdown ko screen ke andar hi fit karo, overflow na ho */
+  .dropdown-menu {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    margin-top: 0.5rem;
+    max-width: 85vw;
+    z-index: 1060;
+  }
+}
+
+/* ===== VERY SMALL SCREENS ===== */
+@media (max-width: 400px) {
+  .dropdown-menu {
+    min-width: 200px;
+    font-size: 0.85rem;
+  }
 }
 
 }

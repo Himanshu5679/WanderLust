@@ -110,3 +110,8 @@ app.listen(8080,()=>{
 
 
 //To start the server, run the command "node app.js" in the terminal. Then open a web browser and go to "http://localhost:8080" to access the application.
+
+// to update gitcode 
+// git add .
+// git commit -m "fixed"
+// git push origin main

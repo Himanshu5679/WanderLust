@@ -671,6 +671,9 @@ PROFILE DROPDOWN - RESPONSIVE FIX
   top: 0;
   z-index: 1050;
 }
+.dropdown {
+  position: relative;
+}
 
 /* Avatar + menu button ek row mein rahen, gap ke saath */
 .navbar .d-flex.align-items-center,
